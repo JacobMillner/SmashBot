@@ -1,5 +1,5 @@
 const SQLite = require("better-sqlite3");
-const sql = new SQLite('../SmashBot.sqlite');
+const sql = new SQLite('./SmashBot.sqlite');
 
 module.exports.Housekeeping = function (callback) {
     // Check if the tables exist.
