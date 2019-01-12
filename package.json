@@ -4,9 +4,9 @@
   "description": "Discord bot for keeping track of Smash Ultimate rankings. To start run smashbot.js.",
   "main": "smashbot.js",
   "dependencies": {
+    "better-sqlite3": "^5.3.0",
     "discord.js": "^11.4.2",
-    "node-gyp": "^3.8.0",
-    "sqlite3": "^4.0.6"
+    "node-gyp": "^3.8.0"
   },
   "devDependencies": {},
   "scripts": {
