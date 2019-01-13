@@ -7,3 +7,17 @@ module.exports.GetAllUsers = function () {
     
     //TODO return rankings
 }
+
+module.exports.CreateNewUser = function () {
+    //TODO 
+    const rankings = sql.prepare("SELECT * FROM Users").get();
+    
+    //TODO return rankings
+}
+
+module.exports.DeleteUser = function () {
+    //TODO 
+    const rankings = sql.prepare("SELECT * FROM Users").get();
+    
+    //TODO return rankings
+}
