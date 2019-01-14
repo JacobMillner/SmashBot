@@ -1,22 +1,22 @@
 const SQLite = require("better-sqlite3");
 const sql = new SQLite('./SmashBot.sqlite');
 
-module.exports.ShowUser = function (id, callback) {
+module.exports.ShowUsers = function (args, callback) {
     var sqlStatement = 'SELECT * FROM Users';
-    if (id != null) {
-        sqlStatement += ` WHERE UserName = ${id}`;
+    if (args != undefined && args.length != 0) {
+        sqlStatement += ` WHERE UserName = \'${args[0]}\'`;
     }
     const users = sql.prepare(sqlStatement).all();
 
     var err = null;
-    if (users == null) {
+    if (users == undefined || users.length == 0) {
         err = 'No Users found.';
-        if (id !== null) {
-            err += ` User ID: ${id}`;
+        if (args != undefined && args.length != 0) {
+            err += ` User ID: ${args[0]}`;
         }
     }
 
-    //TODO return rankings
+    // TODO return users
     callback(err, users);
 }
 
@@ -26,8 +26,13 @@ module.exports.CreateUser = function (callback) {
 }
 
 module.exports.DeleteUser = function (callback) {
-    //TODO 
+    // should we even have this function?
+    // TODO 
     const rankings = sql.prepare("SELECT * FROM Users").get();
 
-    //TODO return rankings
+    // TODO return users
+}
+
+function validateShowUserArgs(args) {
+    // todo
 }

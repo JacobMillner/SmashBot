@@ -5,13 +5,7 @@ exports.run = (client, message, args) => {
             //todo handle error
         }
         else {
-            var userList = '';
-
-            for (var x in msg) {
-                console.log(msg[x]);
-                userList += ` ${msg[x].UserName}`;
-            }
-            message.channel.send(userList).catch(console.error);
+            message.channel.send(msg).catch(console.error);
         }
     });
 }
