@@ -81,3 +81,5 @@ typings/
 
 #sqlite dbs
 *.sqlite
+*.sqlite-shm
+*.sqlite-wal
