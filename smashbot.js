@@ -18,11 +18,11 @@ client.on('ready', () => {
     botlog.log('Becky, please.');
 });
 
-// This loop reads the /events/ folder and attaches each event file to the appropriate event.
+// This loop reads the /events/ folder and attaches each event file to the appropriate event
 fs.readdir("./events/", (err, files) => {
     if (err) return console.error(err);
     files.forEach(file => {
-        // If the file is not a JS file, ignore it
+        // We only care about .js files.
         if (file.endsWith(".js")) {
             // Load the event file itself
             const event = require(`./events/${file}`);
@@ -44,7 +44,7 @@ fs.readdir("./commands/", (err, files) => {
             // Get just the command name from the file name
             let commandName = file.split(".")[0];
             botlog.log(`Attempting to load command ${commandName}`);
-            // Here we simply store the whole thing in the command Enmap. We're not running it right now.
+            // Here we simply store the whole thing in the command Enmap. We're not running it right now
             client.commands.set(commandName, props);
         }
     });
