@@ -10,7 +10,7 @@ exports.run = (client, message, args) => {
     // }
     //validate message
     if (args.length != 2) {
-        message.reply('Invalid amount of arguments. You must format the message ```sp! createuser [NickName] [Switch Friendcode]```').catch(console.error);
+        message.reply('Invalid amount of arguments. You must format the message ```sb! createuser [NickName] [Switch Friendcode]```').catch(console.error);
     }
     else {
         const nick = args[0];
