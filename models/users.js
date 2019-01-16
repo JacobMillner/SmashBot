@@ -20,9 +20,19 @@ module.exports.ShowUsers = function (args, callback) {
     callback(err, users);
 }
 
-module.exports.CreateUser = function (callback) {
-    const users = sql.prepare('SELECT * FROM Users').all();
-    callback(null, users);
+module.exports.CreateUser = function (discordName, nick, friendCode, callback) {
+    var err = null;
+    var msg = null;
+
+    var isValid = validateCreateUser(discordName);
+    if (isValid) {
+        const users = sql.prepare(`INSERT INTO Users (UserName, DiscordName, Elo, FriendCode) VALUES ('${nick}', '${discordName}', 1200, '${friendCode}')`).run();
+        msg = `User for ${discordName} created!`;
+    }
+    else {
+        msg = `User for ${discordName} already exists! Please Contact an admin if this is a mistake.`;
+    }
+    callback(err, msg);
 }
 
 module.exports.DeleteUser = function (callback) {
@@ -33,6 +43,15 @@ module.exports.DeleteUser = function (callback) {
     // TODO return users
 }
 
-function validateShowUserArgs(args) {
+function validateShowUser(args) {
     // todo
+}
+
+function validateCreateUser(discordName) {
+    const userCheck = sql.prepare(`SELECT * FROM Users WHERE DiscordName = '${discordName}'`).get();
+    if (userCheck == null) {
+        return true;
+    } else {
+        return false;
+    }
 }

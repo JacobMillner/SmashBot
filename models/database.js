@@ -10,7 +10,7 @@ module.exports.Housekeeping = function (callback) {
     var log = '';
     if (!usersTableCheck['count(*)']) {
         // If the table isn't there, create it and setup the database correctly.
-        sql.prepare("CREATE TABLE Users (id TEXT PRIMARY KEY, UserName TEXT, DiscordName TEXT, FriendCode TEXT, DateCreated DATETIME default current_timestamp);").run();
+        sql.prepare("CREATE TABLE Users (id TEXT PRIMARY KEY, UserName TEXT, DiscordName TEXT, Elo INTEGER, FriendCode TEXT, DateCreated DATETIME default current_timestamp);").run();
         // Ensure that the "id" row is always unique and indexed.
         sql.prepare("CREATE UNIQUE INDEX idx_Users_id ON Users (id);").run();
         sql.pragma("synchronous = 1");
@@ -21,7 +21,7 @@ module.exports.Housekeeping = function (callback) {
 
     if (!rankingTableCheck['count(*)']) {
         // If the table isn't there, create it and setup the database correctly.
-        sql.prepare("CREATE TABLE Rankings (id TEXT PRIMARY KEY, Winner_Id INTEGER, Loser_Id INTEGER, OnlineFlag INTEGER, DateCreated DATETIME default current_timestamp);").run();
+        sql.prepare("CREATE TABLE Rankings (id TEXT PRIMARY KEY, Winner_Id INTEGER, Loser_Id INTEGER, RankedMatchFlag INTEGER, DateCreated DATETIME default current_timestamp);").run();
         // Ensure that the "id" row is always unique and indexed.
         sql.prepare("CREATE UNIQUE INDEX idx_Rankings_id ON Rankings (id);").run();
         sql.pragma("synchronous = 1");

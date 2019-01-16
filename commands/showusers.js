@@ -10,7 +10,7 @@ exports.run = (client, message, args) => {
             //loop through each user and construct a message to send to channel 
             for (var user in users) {
                 var currentUser = users[user];
-                userList += `${currentUser.UserName} 'Discord: ${currentUser.DiscordName} - Friend Code: ${currentUser.FriendCode}\n`;
+                userList += `${currentUser.UserName} - Discord: ${currentUser.DiscordName} - Friend Code: ${currentUser.FriendCode}\n`;
             }
             userList += '```';
             message.channel.send(userList).catch(console.error);
