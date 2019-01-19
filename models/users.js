@@ -2,21 +2,20 @@ const SQLite = require("better-sqlite3");
 const sql = new SQLite('./SmashBot.sqlite');
 
 module.exports.ShowUsers = function (args, callback) {
-    var sqlStatement = 'SELECT * FROM Users';
+    var sqlstatement = 'SELECT * FROM Users';
     if (args != undefined && args.length != 0) {
-        sqlStatement += ` WHERE UserName = \'${args[0]}\'`;
+        sqlstatement += ` WHERE UserName = \'${args[0]}\'`;
     }
-    const users = sql.prepare(sqlStatement).all();
+    const users = sql.prepare(sqlstatement).all();
 
     var err = null;
     if (users == undefined || users.length == 0) {
-        err = 'No Users found.';
+        err = 'No users found.';
         if (args != undefined && args.length != 0) {
-            err += ` User ID: ${args[0]}`;
+            err += ` User id: ${args[0]}`;
         }
     }
 
-    // TODO return users
     callback(err, users);
 }
 
@@ -43,6 +42,21 @@ module.exports.DeleteUser = function (callback) {
     // TODO return users
 }
 
+module.exports.FindUserByDiscordName = function (discordName, callback) {
+    var sqlstatement = `SELECT * FROM Users WHERE DiscordName = ${discordName}`;
+    const user = sql.prepare(sqlstatement).all(); 
+
+    var err = null;
+    if (user == undefined || user.length == 0) {
+        err = 'No user found.';
+        if (args != undefined && args.length != 0) {
+            err += ` User ID: ${discordName}`;
+        }
+    }
+
+    callback(err, users);
+
+}
 function validateShowUser(args) {
     // todo
 }

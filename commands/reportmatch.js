@@ -6,6 +6,9 @@ exports.run = (client, message, args) => {
         err = message.channel.send('Incorrect parameters.').catch(console.error);
         return;
     }
+    //find users
+    var firstUser;
+    var secondUser;
 
     //test vars
     var p1Rating = parseInt(args[0], 10);
